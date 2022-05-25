@@ -1,3 +1,14 @@
+<?
+    // include_once('php/Application.php');
+    include_once('php/Books.php');
+    include_once('php/Categories.php');
+
+    // new Application();
+    $books = new Books();
+    $categories = new Categories();
+   
+?>
+
 <!DOCTYPE html>
 <html lang="hu">
 <head>
@@ -25,9 +36,14 @@
                 <span class="f-right"><img id="panel-zaro" src="img/arrow_left.png" alt="összecsuk" title="összecsuk"></span>
             </header>
             <div id="kategoriak">
-                <input type="checkbox" name="fantasy" id="fantasy" data-szoveg="Fantasy"><label for="fantasy" id="fantasy_lbl">Fantasy</label><br>
-                <input type="checkbox" name="regeny" id="regeny" data-szoveg="Regény"><label for="regeny" id="regeny_lbl">Regény</label><br>
-                <input type="checkbox" name="motivacios" id="motivacios" data-szoveg="Motivációs"><label for="motivacios" id="motivacios_lbl">Motivációs</label><br>
+            <? 
+                foreach ($categories->getCategories() as $key => $category){ ?>                        
+                    <input type="checkbox" name="<?= $category['name'] ?>" id="<?= $category['name'] ?>" data-szoveg="<?= $category['name'] ?>"><label for="<?= $category['name'] ?>" id="<?= $category['name'].'_lbl' ?>">
+                    <?= $category['name'] ?>
+                    </label><br>
+                <?php } ?>
+                
+                
                 <hr>
                 <a href="admin/login.html"><span><img src="img/login.png" alt="belépés" title="belépés"></span>Belépés</a>
 
@@ -42,52 +58,24 @@
                 <input type="search" name="search"  class="m-b-20">
                 <button id="kereso">Keresés</button>
                 <button id="megse">Mégse</button>
+        
                 <table>
                     <tr>
                         <th>Cím</th>
                         <th>Szerző</th>
                         <th>Kategória</th>
                     </tr>
-                    <tr>
-                        <td>A Gyűrűk Ura</td>
-                        <td>J.R.R. Tolkien</td>
-                        <td>Fantasy, Regény</td>
-                    </tr>
-                    <tr>
-                        <td>A Titok</td>
-                        <td>Rhonda Brain</td>
-                        <td>Motivációs</td>
-                    </tr>
-                    <tr>
-                        <td>A Gyűrűk Ura</td>
-                        <td>J.R.R. Tolkien</td>
-                        <td>Fantasy, Regény</td>
-                    </tr>
-                    <tr>
-                        <td>A Titok</td>
-                        <td>Rhonda Brain</td>
-                        <td>Motivációs</td>
-                    </tr>
-                    <tr>
-                        <td>A Gyűrűk Ura</td>
-                        <td>J.R.R. Tolkien</td>
-                        <td>Fantasy, Regény</td>
-                    </tr>
-                    <tr>
-                        <td>A Titok</td>
-                        <td>Rhonda Brain</td>
-                        <td>Motivációs</td>
-                    </tr>
-                    <tr>
-                        <td>A Gyűrűk Ura</td>
-                        <td>J.R.R. Tolkien</td>
-                        <td>Fantasy, Regény</td>
-                    </tr>
-                    <tr>
-                        <td>A Titok</td>
-                        <td>Rhonda Brain</td>
-                        <td>Motivációs</td>
-                    </tr>
+                    <? 
+                        foreach ($books->getBooks() as $key => $book){ ?>
+                            <tr>
+                                <td> <?= $book['title']   ?></td>
+                                <td> <?= $book['author']   ?></td>
+                                <td> <?= $book['category']   ?></td>
+                            </tr>
+                    <?    }
+                    
+                    ?>
+                    
                 </table>
             </div>
         </div>
