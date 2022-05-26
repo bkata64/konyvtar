@@ -5,7 +5,7 @@
         private $dbParams = array(
             'servername' => 'localhost',
             'username' => 'root',
-            'password' => 'Passw123',
+            'password' => 'Babesoft89',
             'dbname' => 'library'
         );
         private $connection;
