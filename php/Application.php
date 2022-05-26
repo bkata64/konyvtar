@@ -45,6 +45,15 @@
         protected function writeLog($string, $sql){
 
         }
+
+        protected function isValidId($id){
+            if (is_int($id) && $id > 0){
+                return true;
+            } else {
+                return false;
+            }
+        }
+
     }
 
 ?>
